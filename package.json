@@ -78,6 +78,7 @@
     "prettier": "^3.0.3",
     "react": "18.2.0",
     "react-native": "0.74.5",
+    "react-native-blob-util": "^0.19.11",
     "react-native-builder-bob": "^0.29.0",
     "release-it": "^15.0.0",
     "turbo": "^1.10.7",
@@ -88,7 +89,8 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-blob-util": "*"
   },
   "workspaces": [
     "example"

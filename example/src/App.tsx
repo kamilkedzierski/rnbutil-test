@@ -1,17 +1,27 @@
-import { useState, useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-rnblob-util-test';
+import { useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { upload } from 'react-native-rnblob-util-test';
+import { usePickFile } from './usePickFile';
 
 export default function App() {
   const [result, setResult] = useState<number | undefined>();
+  const { pickFromFiles } = usePickFile();
 
-  useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+  const handlePress = async () => {
+    try {
+      const response = await pickFromFiles();
+      console.log(response);
+      upload(decodeURIComponent(response.uri.replace('file://', '')));
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Pressable onPress={handlePress}>
+        <Text>Test</Text>
+      </Pressable>
     </View>
   );
 }
